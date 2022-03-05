@@ -1,9 +1,9 @@
-from gettext import npgettext
+
 from flask import Flask, render_template,request
 import  numpy  as np
 from joblib import load
 import os
-from statistics import mode
+
 
 app = Flask(__name__)
 
