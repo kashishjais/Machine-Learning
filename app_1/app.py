@@ -3,9 +3,29 @@ from flask import Flask, render_template,request
 import  numpy  as np
 from joblib import load
 import os
-
+from statistics import mode
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///predictions.sqlite3'  # step 2
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+#  database class
+db = SQLAlchemy(app) # step 3
+
+# step 4 create a table using python class
+class PredHistory(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	age = db.Column(db.Integer)
+	salary = db.Column(db.Float)
+	prediction = db.Column(db.String)
+
+	def __str__(self):
+		return f"{self.id}, {self.age}, {self.salary}, {self.prediction}"
+
+
+#  end of database class
+# step 5 is on terminal
 
 def load_clf_model():
   print(os.listdir())

@@ -25,6 +25,27 @@
         <h4>Prediction for Age: {{age}} & Salary: {{salary}}</h4>
         <h1>{{result}}</h1>
     </div>
+    <div class="history">
+        <h1>Previous Predictions</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Salary</th> 
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in history %}
+                <tr>
+                    <td>{{record.age}}</td>
+                    <td>{{record.salary}}</td>
+                    <td>{{record.prediction}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
